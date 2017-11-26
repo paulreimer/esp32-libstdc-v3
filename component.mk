@@ -220,6 +220,7 @@ COMPONENT_ADD_INCLUDEDIRS := \
 	$(S)/libsupc++ \
 	gcc-5.2.0/include \
 	gcc-5.2.0/libgcc \
+	gcc-5.2.0/libiberty \
 	xtensa-esp32-elf/include/c++/5.2.0/xtensa-esp32-elf \
 	xtensa-esp32-elf/include/c++/5.2.0 \
 	.
@@ -240,7 +241,8 @@ COMPONENT_OBJS := \
 	\
 	$(cxx98_cxx98_sources:%.cc=$(S)/src/c++98/%.o) \
 	\
-	$(libsupcxx_sources:%.cc=$(S)/libsupc++/%.o)
+	$(libsupcxx_sources:%.cc=$(S)/libsupc++/%.o) \
+	$(libsupcxx_c_sources:%.c=$(S)/libsupc++/%.o)
 
 # Remove default -std=c++11 / -std=gnu++11
 CXXFLAGS:=$(filter-out -std=c++11,$(filter-out -std=gnu++11,$(CXXFLAGS)))
