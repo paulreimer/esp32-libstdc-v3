@@ -69,10 +69,6 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   const ios_base::seekdir ios_base::cur;
   const ios_base::seekdir ios_base::end;
 
-  _Atomic_word ios_base::Init::_S_refcount;
-
-  bool ios_base::Init::_S_synced_with_stdio = true;
-
   ios_base::ios_base() throw()
   : _M_precision(), _M_width(), _M_flags(), _M_exception(), 
   _M_streambuf_state(), _M_callbacks(0), _M_word_zero(), 

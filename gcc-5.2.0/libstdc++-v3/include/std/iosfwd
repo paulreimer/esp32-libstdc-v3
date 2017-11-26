@@ -113,15 +113,6 @@ _GLIBCXX_END_NAMESPACE_CXX11
     class basic_filebuf;
 
   template<typename _CharT, typename _Traits = char_traits<_CharT> >
-    class basic_ifstream;
-
-  template<typename _CharT, typename _Traits = char_traits<_CharT> >
-    class basic_ofstream;
-
-  template<typename _CharT, typename _Traits = char_traits<_CharT> >
-    class basic_fstream;
-
-  template<typename _CharT, typename _Traits = char_traits<_CharT> >
     class istreambuf_iterator;
 
   template<typename _CharT, typename _Traits = char_traits<_CharT> >
@@ -158,15 +149,6 @@ _GLIBCXX_END_NAMESPACE_CXX11
   /// Class for @c char file buffers.
   typedef basic_filebuf<char> 		filebuf;
 
-  /// Class for @c char input file streams.
-  typedef basic_ifstream<char> 		ifstream;
-
-  /// Class for @c char output file streams.
-  typedef basic_ofstream<char> 		ofstream;
-
-  /// Class for @c char mixed input and output file streams.
-  typedef basic_fstream<char> 		fstream;
-
 #ifdef _GLIBCXX_USE_WCHAR_T
   /// Base class for @c wchar_t streams.
   typedef basic_ios<wchar_t> 		wios;
@@ -197,15 +179,6 @@ _GLIBCXX_END_NAMESPACE_CXX11
 
   /// Class for @c wchar_t file buffers.
   typedef basic_filebuf<wchar_t> 	wfilebuf;
-
-  /// Class for @c wchar_t input file streams.
-  typedef basic_ifstream<wchar_t> 	wifstream;
-
-  /// Class for @c wchar_t output file streams.
-  typedef basic_ofstream<wchar_t> 	wofstream;
-
-  /// Class for @c wchar_t mixed input and output file streams.
-  typedef basic_fstream<wchar_t> 	wfstream;
 #endif
   /** @}  */
 

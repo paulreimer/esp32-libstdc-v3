@@ -60,7 +60,6 @@ cxx11_cxx11_sources = \
 
 # ENABLE_DUAL_ABI=1
 cxx11_extra_string_inst_sources = \
-	cow-fstream-inst.cc \
 	cow-sstream-inst.cc \
 	cow-string-inst.cc \
 	cow-wstring-inst.cc \
@@ -70,8 +69,6 @@ cxx11_extra_string_inst_sources = \
 # ENABLE_EXTERN_TEMPLATE=1
 cxx11_inst_sources = \
 	$(cxx11_extra_string_inst_sources) \
-	ext11-inst.cc \
-	fstream-inst.cc \
 	ios-inst.cc \
 	iostream-inst.cc \
 	istream-inst.cc \
@@ -127,11 +124,9 @@ cxx98_cxx98_sources = \
 	mt_allocator.cc \
 	codecvt.cc \
 	complex_io.cc \
-	globals_io.cc \
 	hash_tr1.cc \
 	hashtable_tr1.cc \
 	ios_failure.cc \
-	ios_init.cc \
 	ios_locale.cc \
 	list.cc \
 	list-aux.cc \
@@ -262,7 +257,6 @@ $(S)/src/c++11/compatibility-condvar.o: CXXFLAGS += -std=gnu++11
 $(S)/src/c++11/chrono.o: CXXFLAGS += -std=gnu++11
 $(S)/src/c++11/codecvt.o: CXXFLAGS += -std=gnu++11
 $(S)/src/c++11/condition_variable.o: CXXFLAGS += -std=gnu++11
-$(S)/src/c++11/cow-fstream-inst.o: CXXFLAGS += -std=gnu++11
 $(S)/src/c++11/cow-locale_init.o: CXXFLAGS += -std=gnu++11
 $(S)/src/c++11/cow-shim_facets.o: CXXFLAGS += -std=gnu++11
 $(S)/src/c++11/cow-sstream-inst.o: CXXFLAGS += -std=gnu++11
@@ -278,7 +272,6 @@ $(S)/src/c++11/cxx11-stdexcept.o: CXXFLAGS += -std=gnu++11
 $(S)/src/c++11/cxx11-wlocale-inst.o: CXXFLAGS += -std=gnu++11
 $(S)/src/c++11/debug.o: CXXFLAGS += -std=gnu++11
 $(S)/src/c++11/ext11-inst.o: CXXFLAGS += -std=gnu++11
-$(S)/src/c++11/fstream-inst.o: CXXFLAGS += -std=gnu++11
 $(S)/src/c++11/functexcept.o: CXXFLAGS += -std=gnu++11
 $(S)/src/c++11/functional.o: CXXFLAGS += -std=gnu++11
 $(S)/src/c++11/futex.o: CXXFLAGS += -std=gnu++11

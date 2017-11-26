@@ -51,8 +51,6 @@
 #include <ext/rb_tree>
 #include <ext/rope>
 #include <ext/slist>
-#include <ext/stdio_filebuf.h>
-#include <ext/stdio_sync_filebuf.h>
 #include <ext/throw_allocator.h>
 #include <ext/typelist.h>
 #include <ext/type_traits.h>
@@ -67,5 +65,4 @@
 
 #ifdef _GLIBCXX_HAVE_ICONV
  #include <ext/codecvt_specializations.h>
- #include <ext/enc_filebuf.h>
 #endif

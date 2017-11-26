@@ -29,9 +29,6 @@
     && defined(_GLIBCXX_HAVE_AS_SYMVER_DIRECTIVE)\
     && defined(_GLIBCXX_HAVE_SYMVER_SYMBOL_RENAMING_RUNTIME_SUPPORT)
 #define istreambuf_iterator istreambuf_iteratorXX
-#define basic_fstream basic_fstreamXX
-#define basic_ifstream basic_ifstreamXX
-#define basic_ofstream basic_ofstreamXX
 #define _M_copy(a, b, c) _M_copyXX(a, b, c)
 #define _M_move(a, b, c) _M_moveXX(a, b, c)
 #define _M_assign(a, b, c) _M_assignXX(a, b, c)
@@ -45,7 +42,6 @@
 
 #include <string>
 #include <istream>
-#include <fstream>
 #include <sstream>
 #include <cmath>
 #include <ext/numeric_traits.h>
@@ -245,13 +241,6 @@ _ZNSbIwSt11char_traitsIwESaIwEE9_M_assignEPwjw
 _ZNKSbIwSt11char_traitsIwESaIwEE11_M_disjunctEPKw
 _ZNKSbIwSt11char_traitsIwESaIwEE15_M_check_lengthEjjPKc
 
-_ZNKSt13basic_fstreamIcSt11char_traitsIcEE7is_openEv
-_ZNKSt13basic_fstreamIwSt11char_traitsIwEE7is_openEv
-_ZNKSt14basic_ifstreamIcSt11char_traitsIcEE7is_openEv
-_ZNKSt14basic_ifstreamIwSt11char_traitsIwEE7is_openEv
-_ZNKSt14basic_ofstreamIcSt11char_traitsIcEE7is_openEv
-_ZNKSt14basic_ofstreamIwSt11char_traitsIwEE7is_openEv
-
 _ZNSi6ignoreEi
 _ZNSi6ignoreEv
 _ZNSt13basic_istreamIwSt11char_traitsIwEE6ignoreEi
@@ -298,18 +287,6 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     basic_istream<char>&
     basic_istream<char>::ignore(); 
 
-  template
-    bool
-    basic_fstream<char>::is_open() const;
-
-  template
-    bool
-    basic_ifstream<char>::is_open() const;
-
-  template
-    bool
-    basic_ofstream<char>::is_open() const;
-
 #ifdef _GLIBCXX_USE_WCHAR_T
   bool (* __p2)(const wchar_t&, const wchar_t&) = &char_traits<wchar_t>::eq;
 
@@ -342,18 +319,6 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   template
     basic_istream<wchar_t>&
     basic_istream<wchar_t>::ignore(); 
-
-  template
-    bool
-    basic_fstream<wchar_t>::is_open() const;
-
-  template
-    bool
-    basic_ifstream<wchar_t>::is_open() const;
-
-  template
-    bool
-    basic_ofstream<wchar_t>::is_open() const;
 #endif
 
 _GLIBCXX_END_NAMESPACE_VERSION

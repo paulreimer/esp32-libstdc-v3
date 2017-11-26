@@ -43,7 +43,6 @@
 #endif
 
 #include <ext/concurrence.h>
-#include <fstream>
 #include <string>
 #include <utility>
 #include <vector>
@@ -513,34 +512,6 @@ namespace __gnu_profile
   inline void
   __read_cost_factors()
   {
-    std::string __conf_file_name(_GLIBCXX_PROFILE_DATA(_S_trace_file_name));
-    __conf_file_name += ".conf";
-
-    std::ifstream __conf_file(__conf_file_name.c_str());
-
-    if (__conf_file.is_open())
-      {
-	std::string __line;
-
-	while (std::getline(__conf_file, __line))
-	  {
-	    std::string::size_type __i = __line.find_first_not_of(" \t\n\v");
-
-	    if (__line.length() <= 0 || __line[__i] == '#')
-	      // Skip empty lines or comments.
-	      continue;
-	  }
-
-	// Trim.
-	__line.erase(__remove(__line.begin(), __line.end(), ' '),
-		     __line.end());
-	std::string::size_type __pos = __line.find("=");
-	std::string __factor_name = __line.substr(0, __pos);
-	std::string::size_type __end = __line.find_first_of(";\n");
-	std::string __factor_value = __line.substr(__pos + 1, __end - __pos);
-
-	_GLIBCXX_PROFILE_DATA(__env)[__factor_name] = __factor_value;
-      }
   }
 
   struct __cost_factor_writer
