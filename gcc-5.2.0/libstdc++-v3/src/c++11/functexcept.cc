@@ -33,7 +33,6 @@
 #include <system_error>
 #include <future>
 #include <functional>
-#include <bits/regex_error.h>
 #include <stdarg.h>
 
 #ifdef _GLIBCXX_USE_NLS
@@ -137,11 +136,6 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   void
   __throw_bad_function_call()
   { _GLIBCXX_THROW_OR_ABORT(bad_function_call()); }
-
-  void
-  __throw_regex_error(regex_constants::error_type __ecode
-		      __attribute__((unused)))
-  { _GLIBCXX_THROW_OR_ABORT(regex_error(__ecode)); }
 
 _GLIBCXX_END_NAMESPACE_VERSION
 } // namespace

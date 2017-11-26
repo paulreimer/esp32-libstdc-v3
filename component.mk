@@ -50,7 +50,6 @@ cxx11_cxx11_sources = \
 	mutex.cc \
 	placeholders.cc \
 	random.cc \
-	regex.cc  \
 	shared_ptr.cc \
 	snprintf_lite.cc \
 	system_error.cc \
@@ -288,7 +287,6 @@ $(S)/src/c++11/mutex.o: CXXFLAGS += -std=gnu++11
 $(S)/src/c++11/ostream-inst.o: CXXFLAGS += -std=gnu++11
 $(S)/src/c++11/placeholders.o: CXXFLAGS += -std=gnu++11
 $(S)/src/c++11/random.o: CXXFLAGS += -std=gnu++11
-$(S)/src/c++11/regex.o: CXXFLAGS += -std=gnu++11
 $(S)/src/c++11/shared_ptr.o: CXXFLAGS += -std=gnu++11
 $(S)/src/c++11/snprintf_lite.o: CXXFLAGS += -std=gnu++11
 $(S)/src/c++11/sstream-inst.o: CXXFLAGS += -std=gnu++11

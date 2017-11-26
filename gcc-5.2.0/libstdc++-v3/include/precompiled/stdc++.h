@@ -104,7 +104,6 @@
 #include <mutex>
 #include <random>
 #include <ratio>
-#include <regex>
 #include <scoped_allocator>
 #include <system_error>
 #include <thread>
