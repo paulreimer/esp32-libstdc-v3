@@ -2,6 +2,9 @@
 # Component Makefile
 #
 
+# Path to main upstream sources
+S=gcc-5.2.0/libstdc++-v3
+
 # From src/Makefile.am:
 cxx98_sources = \
 	compatibility.cc \
@@ -207,40 +210,37 @@ libsupcxx_sources = \
 	vmi_class_type_info.cc \
 	vterminate.cc
 
-#	libstdc++-v3/include/std \
-#	libstdc++-v3/include/c \
-#
-#
-#	libstdc++-v3/include/c_global \
-#	libstdc++-v3/include/std \
-#
+libsupcxx_c_sources = \
+	cp-demangle.c
+
 COMPONENT_ADD_INCLUDEDIRS := \
-	libstdc++-v3/include \
-	libstdc++-v3/libsupc++ \
-	libstdc++-v3/include/c_global \
-	libstdc++-v3/include/std \
-	libgcc \
-	include \
-	include/xtensa-esp32-elf \
+	$(S)/include \
+	$(S)/include/c_global \
+	$(S)/include/std \
+	$(S)/libsupc++ \
+	gcc-5.2.0/include \
+	gcc-5.2.0/libgcc \
+	xtensa-esp32-elf/include/c++/5.2.0/xtensa-esp32-elf \
+	xtensa-esp32-elf/include/c++/5.2.0 \
 	.
 
 COMPONENT_SRCDIRS := \
-	libstdc++-v3/libsupc++ \
-	libstdc++-v3/src/c++11 \
-	libstdc++-v3/src/c++98 \
-	libstdc++-v3/src \
+	$(S)/libsupc++ \
+	$(S)/src/c++11 \
+	$(S)/src/c++98 \
+	$(S)/src \
 	.
 
 COMPONENT_OBJS := \
-	$(cxx98_sources:%.cc=libstdc++-v3/src/c++98/%.o) \
-	$(cxx11_sources:%.cc=libstdc++-v3/src/c++11/%.o) \
+	$(cxx98_sources:%.cc=$(S)/src/c++98/%.o) \
+	$(cxx11_sources:%.cc=$(S)/src/c++11/%.o) \
 	\
-	$(cxx11_cxx11_sources:%.cc=libstdc++-v3/src/c++11/%.o) \
-	$(cxx11_inst_sources:%.cc=libstdc++-v3/src/c++11/%.o) \
+	$(cxx11_cxx11_sources:%.cc=$(S)/src/c++11/%.o) \
+	$(cxx11_inst_sources:%.cc=$(S)/src/c++11/%.o) \
 	\
-	$(cxx98_cxx98_sources:%.cc=libstdc++-v3/src/c++98/%.o) \
+	$(cxx98_cxx98_sources:%.cc=$(S)/src/c++98/%.o) \
 	\
-	$(libsupcxx_sources:%.cc=libstdc++-v3/libsupc++/%.o)
+	$(libsupcxx_sources:%.cc=$(S)/libsupc++/%.o)
 
 # Remove default -std=c++11 / -std=gnu++11
 CXXFLAGS:=$(filter-out -std=c++11,$(filter-out -std=gnu++11,$(CXXFLAGS)))
@@ -249,98 +249,94 @@ CXXFLAGS:=$(filter-out -std=c++11,$(filter-out -std=gnu++11,$(CXXFLAGS)))
 CFLAGS += -mfix-esp32-psram-cache-issue
 CXXFLAGS += -nostdinc++ -mfix-esp32-psram-cache-issue
 
-## Fix warnings
-#libstdc++-v3/libsupc++/del_ops.o: CXXFLAGS += -Wno-c++14-compat
-#libstdc++-v3/libsupc++/del_opvs.o: CXXFLAGS += -Wno-c++14-compat
-
 # Use special rules for C++11 files/objects.
-libstdc++-v3/src/c++11/compatibility-c++0x.o: CXXFLAGS += -std=gnu++11
-libstdc++-v3/src/c++11/compatibility-atomic-c++0x.o: CXXFLAGS += -std=gnu++11
-libstdc++-v3/src/c++11/compatibility-thread-c++0x.o: CXXFLAGS += -std=gnu++11
-libstdc++-v3/src/c++11/compatibility-chrono.o: CXXFLAGS += -std=gnu++11
-libstdc++-v3/src/c++11/compatibility-condvar.o: CXXFLAGS += -std=gnu++11
+$(S)/src/c++11/compatibility-c++0x.o: CXXFLAGS += -std=gnu++11
+$(S)/src/c++11/compatibility-atomic-c++0x.o: CXXFLAGS += -std=gnu++11
+$(S)/src/c++11/compatibility-thread-c++0x.o: CXXFLAGS += -std=gnu++11
+$(S)/src/c++11/compatibility-chrono.o: CXXFLAGS += -std=gnu++11
+$(S)/src/c++11/compatibility-condvar.o: CXXFLAGS += -std=gnu++11
 
 # src/c++11/Makefile.am
-libstdc++-v3/src/c++11/chrono.o: CXXFLAGS += -std=gnu++11
-libstdc++-v3/src/c++11/codecvt.o: CXXFLAGS += -std=gnu++11
-libstdc++-v3/src/c++11/condition_variable.o: CXXFLAGS += -std=gnu++11
-libstdc++-v3/src/c++11/cow-fstream-inst.o: CXXFLAGS += -std=gnu++11
-libstdc++-v3/src/c++11/cow-locale_init.o: CXXFLAGS += -std=gnu++11
-libstdc++-v3/src/c++11/cow-shim_facets.o: CXXFLAGS += -std=gnu++11
-libstdc++-v3/src/c++11/cow-sstream-inst.o: CXXFLAGS += -std=gnu++11
-libstdc++-v3/src/c++11/cow-stdexcept.o: CXXFLAGS += -std=gnu++11
-libstdc++-v3/src/c++11/cow-string-inst.o: CXXFLAGS += -std=gnu++11
-libstdc++-v3/src/c++11/cow-wstring-inst.o: CXXFLAGS += -std=gnu++11
-libstdc++-v3/src/c++11/ctype.o: CXXFLAGS += -std=gnu++11
-libstdc++-v3/src/c++11/cxx11-hash_tr1.o: CXXFLAGS += -std=gnu++11
-libstdc++-v3/src/c++11/cxx11-ios_failure.o: CXXFLAGS += -std=gnu++11
-libstdc++-v3/src/c++11/cxx11-locale-inst.o: CXXFLAGS += -std=gnu++11
-libstdc++-v3/src/c++11/cxx11-shim_facets.o: CXXFLAGS += -std=gnu++11
-libstdc++-v3/src/c++11/cxx11-stdexcept.o: CXXFLAGS += -std=gnu++11
-libstdc++-v3/src/c++11/cxx11-wlocale-inst.o: CXXFLAGS += -std=gnu++11
-libstdc++-v3/src/c++11/debug.o: CXXFLAGS += -std=gnu++11
-libstdc++-v3/src/c++11/ext11-inst.o: CXXFLAGS += -std=gnu++11
-libstdc++-v3/src/c++11/fstream-inst.o: CXXFLAGS += -std=gnu++11
-libstdc++-v3/src/c++11/functexcept.o: CXXFLAGS += -std=gnu++11
-libstdc++-v3/src/c++11/functional.o: CXXFLAGS += -std=gnu++11
-libstdc++-v3/src/c++11/futex.o: CXXFLAGS += -std=gnu++11
-libstdc++-v3/src/c++11/future.o: CXXFLAGS += -std=gnu++11
-libstdc++-v3/src/c++11/hash_c++0x.o: CXXFLAGS += -std=gnu++11
-#libstdc++-v3/src/c++11/hashtable_c++0x.o: CXXFLAGS += -std=gnu++11
-libstdc++-v3/src/c++11/ios-inst.o: CXXFLAGS += -std=gnu++11
-libstdc++-v3/src/c++11/ios.o: CXXFLAGS += -std=gnu++11
-libstdc++-v3/src/c++11/iostream-inst.o: CXXFLAGS += -std=gnu++11
-libstdc++-v3/src/c++11/istream-inst.o: CXXFLAGS += -std=gnu++11
-libstdc++-v3/src/c++11/limits.o: CXXFLAGS += -std=gnu++11
-libstdc++-v3/src/c++11/locale-inst.o: CXXFLAGS += -std=gnu++11
-libstdc++-v3/src/c++11/mutex.o: CXXFLAGS += -std=gnu++11
-libstdc++-v3/src/c++11/ostream-inst.o: CXXFLAGS += -std=gnu++11
-libstdc++-v3/src/c++11/placeholders.o: CXXFLAGS += -std=gnu++11
-libstdc++-v3/src/c++11/random.o: CXXFLAGS += -std=gnu++11
-libstdc++-v3/src/c++11/regex.o: CXXFLAGS += -std=gnu++11
-libstdc++-v3/src/c++11/shared_ptr.o: CXXFLAGS += -std=gnu++11
-libstdc++-v3/src/c++11/snprintf_lite.o: CXXFLAGS += -std=gnu++11
-libstdc++-v3/src/c++11/sstream-inst.o: CXXFLAGS += -std=gnu++11
-libstdc++-v3/src/c++11/streambuf-inst.o: CXXFLAGS += -std=gnu++11
-libstdc++-v3/src/c++11/string-inst.o: CXXFLAGS += -std=gnu++11
-libstdc++-v3/src/c++11/system_error.o: CXXFLAGS += -std=gnu++11
-libstdc++-v3/src/c++11/thread.o: CXXFLAGS += -std=gnu++11
-libstdc++-v3/src/c++11/wlocale-inst.o: CXXFLAGS += -std=gnu++11
-libstdc++-v3/src/c++11/wstring-inst.o: CXXFLAGS += -std=gnu++11
+$(S)/src/c++11/chrono.o: CXXFLAGS += -std=gnu++11
+$(S)/src/c++11/codecvt.o: CXXFLAGS += -std=gnu++11
+$(S)/src/c++11/condition_variable.o: CXXFLAGS += -std=gnu++11
+$(S)/src/c++11/cow-fstream-inst.o: CXXFLAGS += -std=gnu++11
+$(S)/src/c++11/cow-locale_init.o: CXXFLAGS += -std=gnu++11
+$(S)/src/c++11/cow-shim_facets.o: CXXFLAGS += -std=gnu++11
+$(S)/src/c++11/cow-sstream-inst.o: CXXFLAGS += -std=gnu++11
+$(S)/src/c++11/cow-stdexcept.o: CXXFLAGS += -std=gnu++11
+$(S)/src/c++11/cow-string-inst.o: CXXFLAGS += -std=gnu++11
+$(S)/src/c++11/cow-wstring-inst.o: CXXFLAGS += -std=gnu++11
+$(S)/src/c++11/ctype.o: CXXFLAGS += -std=gnu++11
+$(S)/src/c++11/cxx11-hash_tr1.o: CXXFLAGS += -std=gnu++11
+$(S)/src/c++11/cxx11-ios_failure.o: CXXFLAGS += -std=gnu++11
+$(S)/src/c++11/cxx11-locale-inst.o: CXXFLAGS += -std=gnu++11
+$(S)/src/c++11/cxx11-shim_facets.o: CXXFLAGS += -std=gnu++11
+$(S)/src/c++11/cxx11-stdexcept.o: CXXFLAGS += -std=gnu++11
+$(S)/src/c++11/cxx11-wlocale-inst.o: CXXFLAGS += -std=gnu++11
+$(S)/src/c++11/debug.o: CXXFLAGS += -std=gnu++11
+$(S)/src/c++11/ext11-inst.o: CXXFLAGS += -std=gnu++11
+$(S)/src/c++11/fstream-inst.o: CXXFLAGS += -std=gnu++11
+$(S)/src/c++11/functexcept.o: CXXFLAGS += -std=gnu++11
+$(S)/src/c++11/functional.o: CXXFLAGS += -std=gnu++11
+$(S)/src/c++11/futex.o: CXXFLAGS += -std=gnu++11
+$(S)/src/c++11/future.o: CXXFLAGS += -std=gnu++11
+$(S)/src/c++11/hash_c++0x.o: CXXFLAGS += -std=gnu++11
+#$(S)/src/c++11/hashtable_c++0x.o: CXXFLAGS += -std=gnu++11
+$(S)/src/c++11/ios-inst.o: CXXFLAGS += -std=gnu++11
+$(S)/src/c++11/ios.o: CXXFLAGS += -std=gnu++11
+$(S)/src/c++11/iostream-inst.o: CXXFLAGS += -std=gnu++11
+$(S)/src/c++11/istream-inst.o: CXXFLAGS += -std=gnu++11
+$(S)/src/c++11/limits.o: CXXFLAGS += -std=gnu++11
+$(S)/src/c++11/locale-inst.o: CXXFLAGS += -std=gnu++11
+$(S)/src/c++11/mutex.o: CXXFLAGS += -std=gnu++11
+$(S)/src/c++11/ostream-inst.o: CXXFLAGS += -std=gnu++11
+$(S)/src/c++11/placeholders.o: CXXFLAGS += -std=gnu++11
+$(S)/src/c++11/random.o: CXXFLAGS += -std=gnu++11
+$(S)/src/c++11/regex.o: CXXFLAGS += -std=gnu++11
+$(S)/src/c++11/shared_ptr.o: CXXFLAGS += -std=gnu++11
+$(S)/src/c++11/snprintf_lite.o: CXXFLAGS += -std=gnu++11
+$(S)/src/c++11/sstream-inst.o: CXXFLAGS += -std=gnu++11
+$(S)/src/c++11/streambuf-inst.o: CXXFLAGS += -std=gnu++11
+$(S)/src/c++11/string-inst.o: CXXFLAGS += -std=gnu++11
+$(S)/src/c++11/system_error.o: CXXFLAGS += -std=gnu++11
+$(S)/src/c++11/thread.o: CXXFLAGS += -std=gnu++11
+$(S)/src/c++11/wlocale-inst.o: CXXFLAGS += -std=gnu++11
+$(S)/src/c++11/wstring-inst.o: CXXFLAGS += -std=gnu++11
 # Use special rules for the hashtable.cc file so that all
 # the generated template functions are also instantiated. 
-libstdc++-v3/src/c++11/hashtable_c++0x.o: CXXFLAGS += -std=gnu++11 -fimplicit-templates
+$(S)/src/c++11/hashtable_c++0x.o: CXXFLAGS += -std=gnu++11 -fimplicit-templates
 
 # src/c++98/Makefile.am
 # Use special rules to compile with the non-default string ABI.
-libstdc++-v3/src/c++98/collate_members_cow.o: CXXFLAGS += -D_GLIBCXX_USE_CXX11_ABI=0 -fimplicit-templates
-libstdc++-v3/src/c++98/messages_members_cow.o: CXXFLAGS += -D_GLIBCXX_USE_CXX11_ABI=0 -fimplicit-templates
-libstdc++-v3/src/c++98/monetary_members_cow.o: CXXFLAGS += -D_GLIBCXX_USE_CXX11_ABI=0 -fimplicit-templates
-libstdc++-v3/src/c++98/numeric_members_cow.o: CXXFLAGS += -D_GLIBCXX_USE_CXX11_ABI=0 -fimplicit-templates
-libstdc++-v3/src/c++98/locale_init.o: CXXFLAGS += -std=gnu++11
-libstdc++-v3/src/c++98/localename.o: CXXFLAGS += -std=gnu++11
-libstdc++-v3/src/c++98/strstream.o: CXXFLAGS += -I$(COMPONENT_PATH)/libstdc++-v3/include/backward -Wno-deprecated
-libstdc++-v3/src/c++98/concept-inst.o: CXXFLAGS += -D_GLIBCXX_CONCEPT_CHECKS -fimplicit-templates
-libstdc++-v3/src/c++98/parallel_settings.o: CXXFLAGS += -D_GLIBCXX_PARALLEL
+$(S)/src/c++98/collate_members_cow.o: CXXFLAGS += -D_GLIBCXX_USE_CXX11_ABI=0 -fimplicit-templates
+$(S)/src/c++98/messages_members_cow.o: CXXFLAGS += -D_GLIBCXX_USE_CXX11_ABI=0 -fimplicit-templates
+$(S)/src/c++98/monetary_members_cow.o: CXXFLAGS += -D_GLIBCXX_USE_CXX11_ABI=0 -fimplicit-templates
+$(S)/src/c++98/numeric_members_cow.o: CXXFLAGS += -D_GLIBCXX_USE_CXX11_ABI=0 -fimplicit-templates
+$(S)/src/c++98/locale_init.o: CXXFLAGS += -std=gnu++11
+$(S)/src/c++98/localename.o: CXXFLAGS += -std=gnu++11
+$(S)/src/c++98/strstream.o: CXXFLAGS += -I$(COMPONENT_PATH)/$(S)/include/backward -Wno-deprecated
+$(S)/src/c++98/concept-inst.o: CXXFLAGS += -D_GLIBCXX_CONCEPT_CHECKS -fimplicit-templates
+$(S)/src/c++98/parallel_settings.o: CXXFLAGS += -D_GLIBCXX_PARALLEL
 
 # libsupc++/Makefile.am
-libstdc++-v3/libsupc++/cp-demangle.o: CXXFLAGS += -DIN_GLIBCPP_V3 -Wno-error
+$(S)/libsupc++/cp-demangle.o: CFLAGS += -DIN_GLIBCPP_V3 -Wno-error -DHAVE_STDLIB_H -DHAVE_STRING_H -DHAVE_ALLOCA_H
 # Use special rules for the C++11 sources so that the proper flags are passed.
-libstdc++-v3/libsupc++/bad_array_length.o: CXXFLAGS += -std=gnu++11
-libstdc++-v3/libsupc++/bad_array_new.o: CXXFLAGS += -std=gnu++11
-libstdc++-v3/libsupc++/eh_aux_runtime.o: CXXFLAGS += -std=gnu++11
-libstdc++-v3/libsupc++/eh_ptr.o: CXXFLAGS += -std=gnu++11
-libstdc++-v3/libsupc++/eh_terminate.o: CXXFLAGS += -std=gnu++11
-libstdc++-v3/libsupc++/eh_throw.o: CXXFLAGS += -std=gnu++11
-libstdc++-v3/libsupc++/guard.o: CXXFLAGS += -std=gnu++11
-libstdc++-v3/libsupc++/atexit_thread.o: CXXFLAGS += -std=gnu++11
-libstdc++-v3/libsupc++/nested_exception.o: CXXFLAGS += -std=gnu++11
-libstdc++-v3/libsupc++/new_handler.o: CXXFLAGS += -std=gnu++11
-libstdc++-v3/libsupc++/new_op.o: CXXFLAGS += -std=gnu++11
-libstdc++-v3/libsupc++/new_opnt.o: CXXFLAGS += -std=gnu++11
+$(S)/libsupc++/bad_array_length.o: CXXFLAGS += -std=gnu++11
+$(S)/libsupc++/bad_array_new.o: CXXFLAGS += -std=gnu++11
+$(S)/libsupc++/eh_aux_runtime.o: CXXFLAGS += -std=gnu++11
+$(S)/libsupc++/eh_ptr.o: CXXFLAGS += -std=gnu++11
+$(S)/libsupc++/eh_terminate.o: CXXFLAGS += -std=gnu++11
+$(S)/libsupc++/eh_throw.o: CXXFLAGS += -std=gnu++11
+$(S)/libsupc++/guard.o: CXXFLAGS += -std=gnu++11
+$(S)/libsupc++/atexit_thread.o: CXXFLAGS += -std=gnu++11
+$(S)/libsupc++/nested_exception.o: CXXFLAGS += -std=gnu++11
+$(S)/libsupc++/new_handler.o: CXXFLAGS += -std=gnu++11
+$(S)/libsupc++/new_op.o: CXXFLAGS += -std=gnu++11
+$(S)/libsupc++/new_opnt.o: CXXFLAGS += -std=gnu++11
 
 # Use special rules for the C++14 sources so that the proper flags are passed.
-libstdc++-v3/libsupc++/del_ops.o: CXXFLAGS += -std=gnu++14 -Wno-sized-deallocation
-libstdc++-v3/libsupc++/del_opvs.o: CXXFLAGS += -std=gnu++14 -Wno-sized-deallocation
+$(S)/libsupc++/del_ops.o: CXXFLAGS += -std=gnu++14 -Wno-sized-deallocation
+$(S)/libsupc++/del_opvs.o: CXXFLAGS += -std=gnu++14 -Wno-sized-deallocation
 
-libstdc++-v3/src/c++11/ctype_members.o: CXXFLAGS += -Wno-type-limits
+$(S)/src/c++11/ctype_members.o: CXXFLAGS += -Wno-type-limits
