@@ -216,15 +216,6 @@ _GLIBCXX_END_NAMESPACE_CXX11
   template class ctype_byname<C>;
 #endif
   
-  // codecvt
-#if ! _GLIBCXX_USE_CXX11_ABI
-  inline template class __codecvt_abstract_base<C, char, mbstate_t>;
-  template class codecvt_byname<C, char, mbstate_t>;
-#else
-  // Instantiate constructor taking __cxx11::string
-  template codecvt_byname<C, char, mbstate_t>::codecvt_byname(const string&, size_t);
-#endif
-
   // collate
 _GLIBCXX_BEGIN_NAMESPACE_CXX11
   template class collate<C>;
@@ -236,10 +227,6 @@ _GLIBCXX_END_NAMESPACE_CXX11
   template
     const ctype<C>& 
     use_facet<ctype<C> >(const locale&);
-
-  template
-    const codecvt<C, char, mbstate_t>& 
-    use_facet<codecvt<C, char, mbstate_t> >(const locale&);
 #endif
 
   template
@@ -299,10 +286,6 @@ _GLIBCXX_END_NAMESPACE_CXX11
   template 
     bool
     has_facet<ctype<C> >(const locale&);
-
-  template 
-    bool
-    has_facet<codecvt<C, char, mbstate_t> >(const locale&);
 #endif
 
   template 

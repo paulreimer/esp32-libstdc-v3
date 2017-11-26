@@ -34,7 +34,6 @@ cxx11_abi_sources = \
 
 cxx11_cxx11_sources = \
 	chrono.cc \
-	codecvt.cc \
 	condition_variable.cc \
 	cow-stdexcept.cc \
 	ctype.cc \
@@ -92,7 +91,6 @@ cxx98_cow_string_host_sources = \
 cxx98_host_sources = \
 	$(cxx98_cow_string_host_sources) \
 	atomicity.cc \
-	codecvt_members.cc \
 	collate_members.cc \
 	messages_members.cc \
 	monetary_members.cc \
@@ -121,7 +119,6 @@ cxx98_cxx98_sources = \
 	bitmap_allocator.cc \
 	pool_allocator.cc \
 	mt_allocator.cc \
-	codecvt.cc \
 	complex_io.cc \
 	hash_tr1.cc \
 	hashtable_tr1.cc \
@@ -254,7 +251,6 @@ $(S)/src/c++11/compatibility-condvar.o: CXXFLAGS += -std=gnu++11
 
 # src/c++11/Makefile.am
 $(S)/src/c++11/chrono.o: CXXFLAGS += -std=gnu++11
-$(S)/src/c++11/codecvt.o: CXXFLAGS += -std=gnu++11
 $(S)/src/c++11/condition_variable.o: CXXFLAGS += -std=gnu++11
 $(S)/src/c++11/cow-locale_init.o: CXXFLAGS += -std=gnu++11
 $(S)/src/c++11/cow-shim_facets.o: CXXFLAGS += -std=gnu++11

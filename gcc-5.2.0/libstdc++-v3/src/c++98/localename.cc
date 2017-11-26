@@ -238,7 +238,6 @@ const int num_facets = _GLIBCXX_NUM_FACETS + _GLIBCXX_NUM_UNICODE_FACETS
  
 	// Construct all standard facets and add them to _M_facets.
 	_M_init_facet(new std::ctype<char>(__cloc, 0, false));
-	_M_init_facet(new codecvt<char, char, mbstate_t>(__cloc));
 	_M_init_facet(new numpunct<char>(__cloc));
 	_M_init_facet(new num_get<char>);
 	_M_init_facet(new num_put<char>);
@@ -254,7 +253,6 @@ const int num_facets = _GLIBCXX_NUM_FACETS + _GLIBCXX_NUM_UNICODE_FACETS
 	
 #ifdef  _GLIBCXX_USE_WCHAR_T
 	_M_init_facet(new std::ctype<wchar_t>(__cloc));
-	_M_init_facet(new codecvt<wchar_t, char, mbstate_t>(__cloc));
 	_M_init_facet(new numpunct<wchar_t>(__cloc));
 	_M_init_facet(new num_get<wchar_t>);
 	_M_init_facet(new num_put<wchar_t>);
@@ -267,11 +265,6 @@ const int num_facets = _GLIBCXX_NUM_FACETS + _GLIBCXX_NUM_UNICODE_FACETS
 	_M_init_facet(new time_get<wchar_t>);
 	_M_init_facet(new time_put<wchar_t>);
 	_M_init_facet(new std::messages<wchar_t>(__cloc, __s));
-#endif
-
-#ifdef _GLIBCXX_USE_C99_STDINT_TR1
-        _M_init_facet(new codecvt<char16_t, char, mbstate_t>);
-        _M_init_facet(new codecvt<char32_t, char, mbstate_t>);
 #endif
 
 #if _GLIBCXX_USE_DUAL_ABI

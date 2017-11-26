@@ -2007,9 +2007,6 @@ _GLIBCXX_END_NAMESPACE_VERSION
 // Include host and configuration specific messages functions.
 #include <bits/messages_members.h>
 
-// 22.2.1.5  Template class codecvt
-#include <bits/codecvt.h>
-
 #include <bits/locale_facets_nonio.tcc>
 
 #endif

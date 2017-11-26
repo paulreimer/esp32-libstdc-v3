@@ -62,7 +62,3 @@
 #include <ext/pb_ds/list_update_policy.hpp>
 #include <ext/pb_ds/tree_policy.hpp>
 #include <ext/pb_ds/trie_policy.hpp>
-
-#ifdef _GLIBCXX_HAVE_ICONV
- #include <ext/codecvt_specializations.h>
-#endif

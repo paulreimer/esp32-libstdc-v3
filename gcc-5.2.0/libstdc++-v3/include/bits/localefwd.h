@@ -133,16 +133,6 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     class ctype_byname;
   // NB: Specialized for char and wchar_t in locale_facets.h.
 
-  class codecvt_base;
-  template<typename _InternT, typename _ExternT, typename _StateT>
-    class codecvt;
-  template<> class codecvt<char, char, mbstate_t>;
-#ifdef _GLIBCXX_USE_WCHAR_T
-  template<> class codecvt<wchar_t, char, mbstate_t>;
-#endif
-  template<typename _InternT, typename _ExternT, typename _StateT>
-    class codecvt_byname;
-
   // 22.2.2 and 22.2.3 numeric
 _GLIBCXX_BEGIN_NAMESPACE_LDBL
   template<typename _CharT, typename _InIter = istreambuf_iterator<_CharT> >

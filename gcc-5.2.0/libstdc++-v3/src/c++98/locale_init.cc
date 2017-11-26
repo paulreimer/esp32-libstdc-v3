@@ -113,10 +113,6 @@ namespace
   __attribute__ ((aligned(__alignof__(num_put<char>))));
   fake_num_put_c num_put_c;
 
-  typedef char fake_codecvt_c[sizeof(codecvt<char, char, mbstate_t>)]
-  __attribute__ ((aligned(__alignof__(codecvt<char, char, mbstate_t>))));
-  fake_codecvt_c codecvt_c;
-
   typedef char fake_moneypunct_c[sizeof(moneypunct<char, true>)]
   __attribute__ ((aligned(__alignof__(moneypunct<char, true>))));
   fake_moneypunct_c moneypunct_ct;
@@ -167,10 +163,6 @@ namespace
   __attribute__ ((aligned(__alignof__(num_put<wchar_t>))));
   fake_num_put_w num_put_w;
 
-  typedef char fake_wodecvt_w[sizeof(codecvt<wchar_t, char, mbstate_t>)]
-  __attribute__ ((aligned(__alignof__(codecvt<wchar_t, char, mbstate_t>))));
-  fake_wodecvt_w codecvt_w;
-
   typedef char fake_moneypunct_w[sizeof(moneypunct<wchar_t, true>)]
   __attribute__ ((aligned(__alignof__(moneypunct<wchar_t, true>))));
   fake_moneypunct_w moneypunct_wt;
@@ -199,16 +191,6 @@ namespace
   typedef char fake_messages_w[sizeof(messages<wchar_t>)]
   __attribute__ ((aligned(__alignof__(messages<wchar_t>))));
   fake_messages_w messages_w;
-#endif
-
-#ifdef _GLIBCXX_USE_C99_STDINT_TR1
-  typedef char fake_codecvt_c16[sizeof(codecvt<char16_t, char, mbstate_t>)]
-  __attribute__ ((aligned(__alignof__(codecvt<char16_t, char, mbstate_t>))));
-  fake_codecvt_c16 codecvt_c16;
-
-  typedef char fake_codecvt_c32[sizeof(codecvt<char32_t, char, mbstate_t>)]
-  __attribute__ ((aligned(__alignof__(codecvt<char32_t, char, mbstate_t>))));
-  fake_codecvt_c32 codecvt_c32;
 #endif
 
   // Storage for "C" locale caches.
@@ -324,14 +306,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   locale::_Impl::_S_id_ctype[] =
   {
     &std::ctype<char>::id, 
-    &codecvt<char, char, mbstate_t>::id,
 #ifdef _GLIBCXX_USE_WCHAR_T
     &std::ctype<wchar_t>::id,
-    &codecvt<wchar_t, char, mbstate_t>::id,
-#endif
-#ifdef _GLIBCXX_USE_C99_STDINT_TR1
-    &codecvt<char16_t, char, mbstate_t>::id,
-    &codecvt<char32_t, char, mbstate_t>::id,
 #endif
     0
   };
@@ -477,7 +453,6 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     // facet is not destroyed when the locale (and thus locale::_Impl) is
     // destroyed.
     _M_init_facet(new (&ctype_c) std::ctype<char>(0, false, 1));
-    _M_init_facet(new (&codecvt_c) codecvt<char, char, mbstate_t>(1));
 
     typedef __numpunct_cache<char> num_cache_c;
     num_cache_c* __npc = new (&numpunct_cache_c) num_cache_c(2);
@@ -507,7 +482,6 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
 #ifdef  _GLIBCXX_USE_WCHAR_T
     _M_init_facet(new (&ctype_w) std::ctype<wchar_t>(1));
-    _M_init_facet(new (&codecvt_w) codecvt<wchar_t, char, mbstate_t>(1));
 
     typedef __numpunct_cache<wchar_t> num_cache_w;
     num_cache_w* __npw = new (&numpunct_cache_w) num_cache_w(2);
@@ -534,11 +508,6 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _M_init_facet(new (&time_get_w) time_get<wchar_t>(1));
     _M_init_facet(new (&time_put_w) time_put<wchar_t>(1));
     _M_init_facet(new (&messages_w) std::messages<wchar_t>(1));
-#endif
-
-#ifdef _GLIBCXX_USE_C99_STDINT_TR1
-    _M_init_facet(new (&codecvt_c16) codecvt<char16_t, char, mbstate_t>(1));
-    _M_init_facet(new (&codecvt_c32) codecvt<char32_t, char, mbstate_t>(1));
 #endif
 
 #if _GLIBCXX_USE_DUAL_ABI
