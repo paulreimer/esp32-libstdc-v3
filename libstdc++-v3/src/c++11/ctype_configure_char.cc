@@ -1,0 +1,1 @@
+../../config/os/newlib/ctype_configure_char.cc
