@@ -712,7 +712,6 @@ _GLIBCXX_BEGIN_NAMESPACE_CONTAINER
    *
    *  @code
    *     #include <bitset>
-   *     #include <iostream>
    *     #include <sstream>
    *
    *     using namespace std;

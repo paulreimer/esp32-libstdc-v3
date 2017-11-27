@@ -51,9 +51,6 @@
 #include <ext/pb_ds/detail/binary_heap_/resize_policy.hpp>
 #include <ext/pb_ds/detail/binary_heap_/point_const_iterator.hpp>
 #include <ext/pb_ds/detail/binary_heap_/const_iterator.hpp>
-#ifdef PB_DS_BINARY_HEAP_TRACE_
-#include <iostream>
-#endif
 #include <ext/pb_ds/detail/type_utils.hpp>
 #include <debug/debug.h>
 

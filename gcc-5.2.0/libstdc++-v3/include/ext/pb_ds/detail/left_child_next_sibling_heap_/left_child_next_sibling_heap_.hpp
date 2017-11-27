@@ -51,9 +51,6 @@
 #include <ext/pb_ds/detail/left_child_next_sibling_heap_/node.hpp>
 #include <ext/pb_ds/detail/left_child_next_sibling_heap_/point_const_iterator.hpp>
 #include <ext/pb_ds/detail/left_child_next_sibling_heap_/const_iterator.hpp>
-#ifdef PB_DS_LC_NS_HEAP_TRACE_
-#include <iostream>
-#endif
 #include <debug/debug.h>
 
 namespace __gnu_pbds

@@ -44,9 +44,6 @@
 #include <ext/pb_ds/exception.hpp>
 #include <ext/pb_ds/detail/eq_fn/hash_eq_fn.hpp>
 #include <utility>
-#ifdef PB_DS_HT_MAP_TRACE_
-#include <iostream>
-#endif
 #ifdef _GLIBCXX_DEBUG
 #include <ext/pb_ds/detail/debug_map_base.hpp>
 #endif

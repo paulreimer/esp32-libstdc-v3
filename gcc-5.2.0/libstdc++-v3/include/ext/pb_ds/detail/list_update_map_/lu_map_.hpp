@@ -48,9 +48,6 @@
 #ifdef _GLIBCXX_DEBUG
 #include <ext/pb_ds/detail/debug_map_base.hpp>
 #endif
-#ifdef PB_DS_LU_MAP_TRACE_
-#include <iostream>
-#endif
 #include <debug/debug.h>
 
 namespace __gnu_pbds

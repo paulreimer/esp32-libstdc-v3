@@ -235,7 +235,6 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
        *  added, the exception is immediately thrown.  Try running the
        *  following under GCC 3.1 or later:
        *  @code
-       *  #include <iostream>
        *  #include <fstream>
        *  #include <exception>
        *
