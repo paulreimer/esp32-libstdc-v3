@@ -974,22 +974,22 @@ namespace std
 #define _GLIBCXX_HAVE_USLEEP 1
 
 /* Defined if vfwscanf exists. */
-#define _GLIBCXX_HAVE_VFWSCANF 1
+/* #undef _GLIBCXX_HAVE_VFWSCANF */
 
 /* Defined if vswscanf exists. */
-#define _GLIBCXX_HAVE_VSWSCANF 1
+/* #undef _GLIBCXX_HAVE_VSWSCANF */
 
 /* Defined if vwscanf exists. */
-#define _GLIBCXX_HAVE_VWSCANF 1
+/* #undef _GLIBCXX_HAVE_VWSCANF */
 
 /* Define to 1 if you have the <wchar.h> header file. */
 #define _GLIBCXX_HAVE_WCHAR_H 1
 
 /* Defined if wcstof exists. */
-#define _GLIBCXX_HAVE_WCSTOF 1
+/* #undef _GLIBCXX_HAVE_WCSTOF */
 
 /* Define to 1 if you have the <wctype.h> header file. */
-#define _GLIBCXX_HAVE_WCTYPE_H 1
+/* #undef _GLIBCXX_HAVE_WCTYPE_H */
 
 /* Defined if Sleep exists. */
 /* #undef _GLIBCXX_HAVE_WIN32_SLEEP */
@@ -1317,7 +1317,7 @@ namespace std
 
 /* Define if wchar_t C99 functions in <inttypes.h> should be imported in
    <tr1/cinttypes> in namespace std::tr1. */
-#define _GLIBCXX_USE_C99_INTTYPES_WCHAR_T_TR1 1
+/* #undef _GLIBCXX_USE_C99_INTTYPES_WCHAR_T_TR1 */
 
 /* Define if C99 functions or macros in <math.h> should be imported in <cmath>
    in namespace std. */
@@ -1395,7 +1395,7 @@ namespace std
 #define _GLIBCXX_USE_TMPNAM 1
 
 /* Define if code specialized for wchar_t should be used. */
-#define _GLIBCXX_USE_WCHAR_T 1
+/* #define _GLIBCXX_USE_WCHAR_T */
 
 /* Define to 1 if a verbose library is built, or 0 otherwise. */
 #define _GLIBCXX_VERBOSE 0
