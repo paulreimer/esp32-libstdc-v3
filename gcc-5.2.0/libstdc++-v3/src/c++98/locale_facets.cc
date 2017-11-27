@@ -27,31 +27,6 @@ namespace std _GLIBCXX_VISIBILITY(default)
 {
 _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
-  // Definitions for static const data members of time_base.
-  template<> 
-    const char*
-    __timepunct_cache<char>::_S_timezones[14] =
-    { 
-      "GMT", "HST", "AKST", "PST", "MST", "CST", "EST", "AST", "NST", "CET", 
-      "IST", "EET", "CST", "JST"  
-    };
- 
-#ifdef _GLIBCXX_USE_WCHAR_T
-  template<> 
-    const wchar_t*
-    __timepunct_cache<wchar_t>::_S_timezones[14] =
-    { 
-      L"GMT", L"HST", L"AKST", L"PST", L"MST", L"CST", L"EST", L"AST", 
-      L"NST", L"CET", L"IST", L"EET", L"CST", L"JST"  
-    };
-#endif
-
-  // Definitions for static const data members of money_base.
-  const money_base::pattern 
-  money_base::_S_default_pattern =  { {symbol, sign, none, value} };
-
-  const char* money_base::_S_atoms = "-0123456789";
-
   const char* __num_base::_S_atoms_in = "-+xX0123456789abcdefABCDEF";
   const char* __num_base::_S_atoms_out ="-+xX0123456789abcdef0123456789ABCDEF";
 

@@ -44,13 +44,9 @@ namespace
 # define _GLIBCXX_LOC_ID(mangled) extern std::locale::id mangled
 _GLIBCXX_LOC_ID (_ZNSt7num_getIcSt19istreambuf_iteratorIcSt11char_traitsIcEEE2idE);
 _GLIBCXX_LOC_ID (_ZNSt7num_putIcSt19ostreambuf_iteratorIcSt11char_traitsIcEEE2idE);
-_GLIBCXX_LOC_ID (_ZNSt9money_getIcSt19istreambuf_iteratorIcSt11char_traitsIcEEE2idE);
-_GLIBCXX_LOC_ID (_ZNSt9money_putIcSt19ostreambuf_iteratorIcSt11char_traitsIcEEE2idE);
 # ifdef _GLIBCXX_USE_WCHAR_T
 _GLIBCXX_LOC_ID (_ZNSt7num_getIwSt19istreambuf_iteratorIwSt11char_traitsIwEEE2idE);
 _GLIBCXX_LOC_ID (_ZNSt7num_putIwSt19ostreambuf_iteratorIwSt11char_traitsIwEEE2idE);
-_GLIBCXX_LOC_ID (_ZNSt9money_getIwSt19istreambuf_iteratorIwSt11char_traitsIwEEE2idE);
-_GLIBCXX_LOC_ID (_ZNSt9money_putIwSt19ostreambuf_iteratorIwSt11char_traitsIwEEE2idE);
 # endif
 #endif
 
@@ -62,9 +58,6 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   const locale::category 	locale::none;
   const locale::category 	locale::ctype;
   const locale::category 	locale::numeric;
-  const locale::category 	locale::collate;
-  const locale::category 	locale::time;
-  const locale::category 	locale::monetary;
   const locale::category 	locale::messages;
   const locale::category 	locale::all;
 
@@ -156,20 +149,11 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	// NB: May be a C-style "LC_ALL" category; convert.
 	switch (__cat)
 	  {
-	  case LC_COLLATE:  
-	    __ret = collate; 
-	    break;
 	  case LC_CTYPE:    
 	    __ret = ctype;
 	    break;
-	  case LC_MONETARY: 
-	    __ret = monetary;
-	    break;
 	  case LC_NUMERIC:  
 	    __ret = numeric;
-	    break;
-	  case LC_TIME:     
-	    __ret = time; 
 	    break;
 #ifdef _GLIBCXX_HAVE_LC_MESSAGES
 	  case LC_MESSAGES: 
@@ -480,13 +464,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  f = &facet::id
 	_GLIBCXX_SYNC_ID (num_get<char>, _ZNSt7num_getIcSt19istreambuf_iteratorIcSt11char_traitsIcEEE2idE);
 	_GLIBCXX_SYNC_ID (num_put<char>, _ZNSt7num_putIcSt19ostreambuf_iteratorIcSt11char_traitsIcEEE2idE);
-	_GLIBCXX_SYNC_ID (money_get<char>, _ZNSt9money_getIcSt19istreambuf_iteratorIcSt11char_traitsIcEEE2idE);
-	_GLIBCXX_SYNC_ID (money_put<char>, _ZNSt9money_putIcSt19ostreambuf_iteratorIcSt11char_traitsIcEEE2idE);
 # ifdef _GLIBCXX_USE_WCHAR_T
 	_GLIBCXX_SYNC_ID (num_get<wchar_t>, _ZNSt7num_getIwSt19istreambuf_iteratorIwSt11char_traitsIwEEE2idE);
 	_GLIBCXX_SYNC_ID (num_put<wchar_t>, _ZNSt7num_putIwSt19ostreambuf_iteratorIwSt11char_traitsIwEEE2idE);
-	_GLIBCXX_SYNC_ID (money_get<wchar_t>, _ZNSt9money_getIwSt19istreambuf_iteratorIwSt11char_traitsIwEEE2idE);
-	_GLIBCXX_SYNC_ID (money_put<wchar_t>, _ZNSt9money_putIwSt19ostreambuf_iteratorIwSt11char_traitsIwEEE2idE);
 # endif
 	if (f)
 	  _M_index = 1 + f->_M_id();

@@ -81,21 +81,16 @@ cxx11_inst_sources = \
 # From src/c++98/Makefile.am:
 # ENABLE_DUAL_ABI=1
 cxx98_cow_string_host_sources = \
-	collate_members_cow.cc \
-	messages_members_cow.cc \
-	monetary_members_cow.cc \
-	numeric_members_cow.cc
+	numeric_members_cow.cc \
+	messages_members_cow.cc
 
 # Source files linked in via configuration/make substitution for a
 # particular host.
 cxx98_host_sources = \
 	$(cxx98_cow_string_host_sources) \
 	atomicity.cc \
-	collate_members.cc \
 	messages_members.cc \
-	monetary_members.cc \
-	numeric_members.cc \
-	time_members.cc
+	numeric_members.cc
 
 # ENABLE_DUAL_ABI=1
 cxx98_cxx11_abi_sources = \
@@ -298,9 +293,7 @@ $(S)/src/c++11/hashtable_c++0x.o: CXXFLAGS += -std=gnu++11 -fimplicit-templates
 
 # src/c++98/Makefile.am
 # Use special rules to compile with the non-default string ABI.
-$(S)/src/c++98/collate_members_cow.o: CXXFLAGS += -D_GLIBCXX_USE_CXX11_ABI=0 -fimplicit-templates
 $(S)/src/c++98/messages_members_cow.o: CXXFLAGS += -D_GLIBCXX_USE_CXX11_ABI=0 -fimplicit-templates
-$(S)/src/c++98/monetary_members_cow.o: CXXFLAGS += -D_GLIBCXX_USE_CXX11_ABI=0 -fimplicit-templates
 $(S)/src/c++98/numeric_members_cow.o: CXXFLAGS += -D_GLIBCXX_USE_CXX11_ABI=0 -fimplicit-templates
 $(S)/src/c++98/locale_init.o: CXXFLAGS += -std=gnu++11
 $(S)/src/c++98/localename.o: CXXFLAGS += -std=gnu++11

@@ -38,31 +38,19 @@ namespace std _GLIBCXX_VISIBILITY(default)
 #define C char
   template class num_get<C, istreambuf_iterator<C> >;
   template class num_put<C, ostreambuf_iterator<C> >;
-  template class money_get<C, istreambuf_iterator<C> >;
-  template class money_put<C, ostreambuf_iterator<C> >;
   template const num_put<C>& use_facet<num_put<C> >(const locale&);
   template const num_get<C>& use_facet<num_get<C> >(const locale&);
-  template const money_put<C>& use_facet<money_put<C> >(const locale&);
-  template const money_get<C>& use_facet<money_get<C> >(const locale&);
   template bool has_facet<num_put<C> >(const locale&);
   template bool has_facet<num_get<C> >(const locale&);
-  template bool has_facet<money_put<C> >(const locale&);
-  template bool has_facet<money_get<C> >(const locale&);
 #undef C
 #ifdef _GLIBCXX_USE_WCHAR_T
 #define C wchar_t
   template class num_get<C, istreambuf_iterator<C> >;
   template class num_put<C, ostreambuf_iterator<C> >;
-  template class money_get<C, istreambuf_iterator<C> >;
-  template class money_put<C, ostreambuf_iterator<C> >;
   template const num_put<C>& use_facet<num_put<C> >(const locale&);
   template const num_get<C>& use_facet<num_get<C> >(const locale&);
-  template const money_put<C>& use_facet<money_put<C> >(const locale&);
-  template const money_get<C>& use_facet<money_get<C> >(const locale&);
   template bool has_facet<num_put<C> >(const locale&);
   template bool has_facet<num_get<C> >(const locale&);
-  template bool has_facet<money_put<C> >(const locale&);
-  template bool has_facet<money_get<C> >(const locale&);
 #undef C
 #endif
 }

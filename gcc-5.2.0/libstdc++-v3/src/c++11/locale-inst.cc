@@ -47,45 +47,6 @@ namespace std _GLIBCXX_VISIBILITY(default)
 {
 _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
-  // moneypunct, money_get, and money_put
-#if ! _GLIBCXX_USE_CXX11_ABI
-  template struct __moneypunct_cache<C, false>;
-  template struct __moneypunct_cache<C, true>;
-#endif
-_GLIBCXX_BEGIN_NAMESPACE_CXX11
-  template class moneypunct<C, false>;
-  template class moneypunct<C, true>;
-  template class moneypunct_byname<C, false>;
-  template class moneypunct_byname<C, true>;
-_GLIBCXX_END_NAMESPACE_CXX11
-_GLIBCXX_BEGIN_NAMESPACE_LDBL_OR_CXX11
-  template class money_get<C, istreambuf_iterator<C> >;
-  template class money_put<C, ostreambuf_iterator<C> >;
-  template
-    istreambuf_iterator<C>
-    money_get<C, istreambuf_iterator<C> >::
-    _M_extract<true>(istreambuf_iterator<C>, istreambuf_iterator<C>,
-		     ios_base&, ios_base::iostate&, string&) const;
-
-  template
-    istreambuf_iterator<C>
-    money_get<C, istreambuf_iterator<C> >::
-    _M_extract<false>(istreambuf_iterator<C>, istreambuf_iterator<C>,
-		      ios_base&, ios_base::iostate&, string&) const;
-
-  template
-    ostreambuf_iterator<C>
-    money_put<C, ostreambuf_iterator<C> >::
-    _M_insert<true>(ostreambuf_iterator<C>, ios_base&, C, 
-		    const string_type&) const;
-
-  template
-    ostreambuf_iterator<C>
-    money_put<C, ostreambuf_iterator<C> >::
-    _M_insert<false>(ostreambuf_iterator<C>, ios_base&, C, 
-		     const string_type&) const;
-_GLIBCXX_END_NAMESPACE_LDBL_OR_CXX11
-
   // numpunct, numpunct_byname, num_get, and num_put
 #if ! _GLIBCXX_USE_CXX11_ABI
   template struct __numpunct_cache<C>;
@@ -186,21 +147,6 @@ _GLIBCXX_BEGIN_NAMESPACE_LDBL
 #endif
 _GLIBCXX_END_NAMESPACE_LDBL
 
-  // time_get and time_put
-#if ! _GLIBCXX_USE_CXX11_ABI
-  template class __timepunct<C>;
-  template struct __timepunct_cache<C>;
-  template class time_put<C, ostreambuf_iterator<C> >;
-  template class time_put_byname<C, ostreambuf_iterator<C> >;
-#else
-  // Instantiate constructor taking __cxx11::string
-  template time_put_byname<C>::time_put_byname(const string&, size_t);
-#endif
-_GLIBCXX_BEGIN_NAMESPACE_CXX11
-  template class time_get<C, istreambuf_iterator<C> >;
-  template class time_get_byname<C, istreambuf_iterator<C> >;
-_GLIBCXX_END_NAMESPACE_CXX11
-
   // messages
 _GLIBCXX_BEGIN_NAMESPACE_CXX11
   template class messages<C>;
@@ -216,22 +162,12 @@ _GLIBCXX_END_NAMESPACE_CXX11
   template class ctype_byname<C>;
 #endif
   
-  // collate
-_GLIBCXX_BEGIN_NAMESPACE_CXX11
-  template class collate<C>;
-  template class collate_byname<C>;
-_GLIBCXX_END_NAMESPACE_CXX11
-    
   // use_facet
 #if ! _GLIBCXX_USE_CXX11_ABI
   template
     const ctype<C>& 
     use_facet<ctype<C> >(const locale&);
 #endif
-
-  template
-    const collate<C>& 
-    use_facet<collate<C> >(const locale&);
 
   template
     const numpunct<C>& 
@@ -247,50 +183,12 @@ _GLIBCXX_END_NAMESPACE_CXX11
     use_facet<num_get<C> >(const locale&);
 #endif
 
-  template
-    const moneypunct<C, true>& 
-    use_facet<moneypunct<C, true> >(const locale&);
-
-  template
-    const moneypunct<C, false>& 
-    use_facet<moneypunct<C, false> >(const locale&);
-
-  template 
-    const money_put<C>& 
-    use_facet<money_put<C> >(const locale&);
-
-  template 
-    const money_get<C>& 
-    use_facet<money_get<C> >(const locale&);
-
-#if ! _GLIBCXX_USE_CXX11_ABI
-  template
-    const __timepunct<C>& 
-    use_facet<__timepunct<C> >(const locale&);
-
-  template 
-    const time_put<C>& 
-    use_facet<time_put<C> >(const locale&);
-#endif
-
-  template 
-    const time_get<C>& 
-    use_facet<time_get<C> >(const locale&);
-
-  template 
-    const messages<C>& 
-    use_facet<messages<C> >(const locale&);
-
   // has_facet
 #if ! _GLIBCXX_USE_CXX11_ABI
   template 
     bool
     has_facet<ctype<C> >(const locale&);
 #endif
-
-  template 
-    bool
-    has_facet<collate<C> >(const locale&);
 
   template 
     bool
@@ -305,32 +203,6 @@ _GLIBCXX_END_NAMESPACE_CXX11
     bool
     has_facet<num_get<C> >(const locale&);
 #endif
-
-  template 
-    bool
-    has_facet<moneypunct<C> >(const locale&);
-
-  template 
-    bool
-    has_facet<money_put<C> >(const locale&);
-
-  template 
-    bool
-    has_facet<money_get<C> >(const locale&);
-
-#if ! _GLIBCXX_USE_CXX11_ABI
-  template 
-    bool
-    has_facet<__timepunct<C> >(const locale&);
-
-  template 
-    bool
-    has_facet<time_put<C> >(const locale&);
-#endif
-
-  template 
-    bool
-    has_facet<time_get<C> >(const locale&);
 
   template 
     bool
@@ -393,13 +265,5 @@ _GLIBCXX_LDBL_COMPAT(_ZNKSt17__gnu_cxx_ldbl1287num_putIcSt19ostreambuf_iteratorI
 		     _ZNKSt7num_putIcSt19ostreambuf_iteratorIcSt11char_traitsIcEEE15_M_insert_floatIdEES3_S3_RSt8ios_baseccT_);
 _GLIBCXX_LDBL_COMPAT(_ZNKSt7num_putIcSt19ostreambuf_iteratorIcSt11char_traitsIcEEE15_M_insert_floatIdEES3_S3_RSt8ios_baseccT_,
 		     _ZNKSt7num_putIcSt19ostreambuf_iteratorIcSt11char_traitsIcEEE15_M_insert_floatIeEES3_S3_RSt8ios_baseccT_);
-_GLIBCXX_LDBL_COMPAT(_ZNKSt17__gnu_cxx_ldbl1289money_getIcSt19istreambuf_iteratorIcSt11char_traitsIcEEE10_M_extractILb0EEES4_S4_S4_RSt8ios_baseRSt12_Ios_IostateRSs,
-		     _ZNKSt9money_getIcSt19istreambuf_iteratorIcSt11char_traitsIcEEE10_M_extractILb0EEES3_S3_S3_RSt8ios_baseRSt12_Ios_IostateRSs);
-_GLIBCXX_LDBL_COMPAT(_ZNKSt17__gnu_cxx_ldbl1289money_getIcSt19istreambuf_iteratorIcSt11char_traitsIcEEE10_M_extractILb1EEES4_S4_S4_RSt8ios_baseRSt12_Ios_IostateRSs,
-		     _ZNKSt9money_getIcSt19istreambuf_iteratorIcSt11char_traitsIcEEE10_M_extractILb1EEES3_S3_S3_RSt8ios_baseRSt12_Ios_IostateRSs);
-_GLIBCXX_LDBL_COMPAT(_ZNKSt17__gnu_cxx_ldbl1289money_putIcSt19ostreambuf_iteratorIcSt11char_traitsIcEEE9_M_insertILb0EEES4_S4_RSt8ios_basecRKSs,
-		     _ZNKSt9money_putIcSt19ostreambuf_iteratorIcSt11char_traitsIcEEE9_M_insertILb0EEES3_S3_RSt8ios_basecRKSs);
-_GLIBCXX_LDBL_COMPAT(_ZNKSt17__gnu_cxx_ldbl1289money_putIcSt19ostreambuf_iteratorIcSt11char_traitsIcEEE9_M_insertILb1EEES4_S4_RSt8ios_basecRKSs,
-		     _ZNKSt9money_putIcSt19ostreambuf_iteratorIcSt11char_traitsIcEEE9_M_insertILb1EEES3_S3_RSt8ios_basecRKSs);
 
 #endif // _GLIBCXX_LONG_DOUBLE_COMPAT

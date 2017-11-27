@@ -241,14 +241,6 @@ const int num_facets = _GLIBCXX_NUM_FACETS + _GLIBCXX_NUM_UNICODE_FACETS
 	_M_init_facet(new numpunct<char>(__cloc));
 	_M_init_facet(new num_get<char>);
 	_M_init_facet(new num_put<char>);
-	_M_init_facet(new std::collate<char>(__cloc));
-	_M_init_facet(new moneypunct<char, false>(__cloc, 0));
-	_M_init_facet(new moneypunct<char, true>(__cloc, 0));
-	_M_init_facet(new money_get<char>);
-	_M_init_facet(new money_put<char>);
-	_M_init_facet(new __timepunct<char>(__cloc, __s));
-	_M_init_facet(new time_get<char>);
-	_M_init_facet(new time_put<char>);
 	_M_init_facet(new std::messages<char>(__cloc, __s));
 	
 #ifdef  _GLIBCXX_USE_WCHAR_T
@@ -256,14 +248,6 @@ const int num_facets = _GLIBCXX_NUM_FACETS + _GLIBCXX_NUM_UNICODE_FACETS
 	_M_init_facet(new numpunct<wchar_t>(__cloc));
 	_M_init_facet(new num_get<wchar_t>);
 	_M_init_facet(new num_put<wchar_t>);
-	_M_init_facet(new std::collate<wchar_t>(__cloc));
-	_M_init_facet(new moneypunct<wchar_t, false>(__clocm, __smon));
-	_M_init_facet(new moneypunct<wchar_t, true>(__clocm, __smon));
-	_M_init_facet(new money_get<wchar_t>);
-	_M_init_facet(new money_put<wchar_t>);
-	_M_init_facet(new __timepunct<wchar_t>(__cloc, __s));
-	_M_init_facet(new time_get<wchar_t>);
-	_M_init_facet(new time_put<wchar_t>);
 	_M_init_facet(new std::messages<wchar_t>(__cloc, __s));
 #endif
 
@@ -329,7 +313,7 @@ const int num_facets = _GLIBCXX_NUM_FACETS + _GLIBCXX_NUM_UNICODE_FACETS
 		_M_replace_category(__imp, _S_facet_categories[__ix]);
 
 		// FIXME: Hack for libstdc++/29217: the numerical encodings
-		// of the time and collate categories are swapped vs the
+		// of the time categories are swapped vs the
 		// order of the names in locale::_S_categories.  We'd like to
 		// adjust the former (the latter is dictated by compatibility
 		// with glibc) but we can't for binary compatibility.

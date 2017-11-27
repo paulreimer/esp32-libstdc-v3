@@ -35,21 +35,9 @@
 // to the other facets instantiated with the old ABI.
 # define _GLIBCXX_LOC_ID(mangled) extern std::locale::id mangled
 _GLIBCXX_LOC_ID(_ZNSt8numpunctIcE2idE);
-_GLIBCXX_LOC_ID(_ZNSt7collateIcE2idE);
-_GLIBCXX_LOC_ID(_ZNSt8time_getIcSt19istreambuf_iteratorIcSt11char_traitsIcEEE2idE);
-_GLIBCXX_LOC_ID(_ZNSt9money_getIcSt19istreambuf_iteratorIcSt11char_traitsIcEEE2idE);
-_GLIBCXX_LOC_ID(_ZNSt9money_putIcSt19ostreambuf_iteratorIcSt11char_traitsIcEEE2idE);
-_GLIBCXX_LOC_ID(_ZNSt10moneypunctIcLb0EE2idE);
-_GLIBCXX_LOC_ID(_ZNSt10moneypunctIcLb1EE2idE);
 _GLIBCXX_LOC_ID(_ZNSt8messagesIcE2idE);
 # ifdef _GLIBCXX_USE_WCHAR_T
 _GLIBCXX_LOC_ID(_ZNSt8numpunctIwE2idE);
-_GLIBCXX_LOC_ID(_ZNSt7collateIwE2idE);
-_GLIBCXX_LOC_ID(_ZNSt8time_getIwSt19istreambuf_iteratorIwSt11char_traitsIwEEE2idE);
-_GLIBCXX_LOC_ID(_ZNSt9money_getIwSt19istreambuf_iteratorIwSt11char_traitsIwEEE2idE);
-_GLIBCXX_LOC_ID(_ZNSt9money_putIwSt19ostreambuf_iteratorIwSt11char_traitsIwEEE2idE);
-_GLIBCXX_LOC_ID(_ZNSt10moneypunctIwLb0EE2idE);
-_GLIBCXX_LOC_ID(_ZNSt10moneypunctIwLb1EE2idE);
 _GLIBCXX_LOC_ID(_ZNSt8messagesIwE2idE);
 # endif
 #endif
@@ -97,10 +85,6 @@ namespace
   __attribute__ ((aligned(__alignof__(std::ctype<char>))));
   fake_ctype_c ctype_c;
 
-  typedef char fake_collate_c[sizeof(std::collate<char>)]
-  __attribute__ ((aligned(__alignof__(std::collate<char>))));
-  fake_collate_c collate_c;
-
   typedef char fake_numpunct_c[sizeof(numpunct<char>)]
   __attribute__ ((aligned(__alignof__(numpunct<char>))));
   fake_numpunct_c numpunct_c;
@@ -113,31 +97,6 @@ namespace
   __attribute__ ((aligned(__alignof__(num_put<char>))));
   fake_num_put_c num_put_c;
 
-  typedef char fake_moneypunct_c[sizeof(moneypunct<char, true>)]
-  __attribute__ ((aligned(__alignof__(moneypunct<char, true>))));
-  fake_moneypunct_c moneypunct_ct;
-  fake_moneypunct_c moneypunct_cf;
-
-  typedef char fake_money_get_c[sizeof(money_get<char>)]
-  __attribute__ ((aligned(__alignof__(money_get<char>))));
-  fake_money_get_c money_get_c;
-  
-  typedef char fake_money_put_c[sizeof(money_put<char>)]
-  __attribute__ ((aligned(__alignof__(money_put<char>))));
-  fake_money_put_c money_put_c;
-
-  typedef char fake_timepunct_c[sizeof(__timepunct<char>)]
-  __attribute__ ((aligned(__alignof__(__timepunct<char>))));
-  fake_timepunct_c timepunct_c;
-
-  typedef char fake_time_get_c[sizeof(time_get<char>)]
-  __attribute__ ((aligned(__alignof__(time_get<char>))));
-  fake_time_get_c time_get_c;
-
-  typedef char fake_time_put_c[sizeof(time_put<char>)]
-  __attribute__ ((aligned(__alignof__(time_put<char>))));
-  fake_time_put_c time_put_c;
-
   typedef char fake_messages_c[sizeof(messages<char>)]
   __attribute__ ((aligned(__alignof__(messages<char>))));
   fake_messages_c messages_c;
@@ -146,10 +105,6 @@ namespace
   typedef char fake_wtype_w[sizeof(std::ctype<wchar_t>)]
   __attribute__ ((aligned(__alignof__(std::ctype<wchar_t>))));
   fake_wtype_w ctype_w;
-
-  typedef char fake_wollate_w[sizeof(std::collate<wchar_t>)]
-  __attribute__ ((aligned(__alignof__(std::collate<wchar_t>))));
-  fake_wollate_w collate_w;
 
   typedef char fake_numpunct_w[sizeof(numpunct<wchar_t>)]
   __attribute__ ((aligned(__alignof__(numpunct<wchar_t>))));
@@ -163,31 +118,6 @@ namespace
   __attribute__ ((aligned(__alignof__(num_put<wchar_t>))));
   fake_num_put_w num_put_w;
 
-  typedef char fake_moneypunct_w[sizeof(moneypunct<wchar_t, true>)]
-  __attribute__ ((aligned(__alignof__(moneypunct<wchar_t, true>))));
-  fake_moneypunct_w moneypunct_wt;
-  fake_moneypunct_w moneypunct_wf;
-
-  typedef char fake_money_get_w[sizeof(money_get<wchar_t>)]
-  __attribute__ ((aligned(__alignof__(money_get<wchar_t>))));
-  fake_money_get_w money_get_w;
-  
-  typedef char fake_money_put_w[sizeof(money_put<wchar_t>)]
-  __attribute__ ((aligned(__alignof__(money_put<wchar_t>))));
-  fake_money_put_w money_put_w;
-
-  typedef char fake_timepunct_w[sizeof(__timepunct<wchar_t>)]
-  __attribute__ ((aligned(__alignof__(__timepunct<wchar_t>))));
-  fake_timepunct_w timepunct_w;
-
-  typedef char fake_time_get_w[sizeof(time_get<wchar_t>)]
-  __attribute__ ((aligned(__alignof__(time_get<wchar_t>))));
-  fake_time_get_w time_get_w;
-
-  typedef char fake_time_put_w[sizeof(time_put<wchar_t>)]
-  __attribute__ ((aligned(__alignof__(time_put<wchar_t>))));
-  fake_time_put_w time_put_w;
-
   typedef char fake_messages_w[sizeof(messages<wchar_t>)]
   __attribute__ ((aligned(__alignof__(messages<wchar_t>))));
   fake_messages_w messages_w;
@@ -198,28 +128,10 @@ namespace
   __attribute__ ((aligned(__alignof__(std::__numpunct_cache<char>))));
   fake_num_cache_c numpunct_cache_c;
 
-  typedef char fake_money_cache_c[sizeof(std::__moneypunct_cache<char, true>)]
-  __attribute__ ((aligned(__alignof__(std::__moneypunct_cache<char, true>))));
-  fake_money_cache_c moneypunct_cache_ct;
-  fake_money_cache_c moneypunct_cache_cf;
-
-  typedef char fake_time_cache_c[sizeof(std::__timepunct_cache<char>)]
-  __attribute__ ((aligned(__alignof__(std::__timepunct_cache<char>))));
-  fake_time_cache_c timepunct_cache_c;
-
 #ifdef _GLIBCXX_USE_WCHAR_T
   typedef char fake_num_cache_w[sizeof(std::__numpunct_cache<wchar_t>)]
   __attribute__ ((aligned(__alignof__(std::__numpunct_cache<wchar_t>))));
   fake_num_cache_w numpunct_cache_w;
-
-  typedef char fake_money_cache_w[sizeof(std::__moneypunct_cache<wchar_t,true>)]
-  __attribute__ ((aligned(__alignof__(std::__moneypunct_cache<wchar_t,true>))));
-  fake_money_cache_w moneypunct_cache_wt;
-  fake_money_cache_w moneypunct_cache_wf;
-
-  typedef char fake_time_cache_w[sizeof(std::__timepunct_cache<wchar_t>)]
-  __attribute__ ((aligned(__alignof__(std::__timepunct_cache<wchar_t>))));
-  fake_time_cache_w timepunct_cache_w;
 #endif
 } // anonymous namespace
 
@@ -329,40 +241,18 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   const locale::id* const
   locale::_Impl::_S_id_collate[] =
   {
-    &std::collate<char>::id,
-#ifdef _GLIBCXX_USE_WCHAR_T
-    &std::collate<wchar_t>::id,
-#endif
     0
   };
 
   const locale::id* const
   locale::_Impl::_S_id_time[] =
   {
-    &__timepunct<char>::id, 
-    &time_get<char>::id, 
-    &time_put<char>::id, 
-#ifdef _GLIBCXX_USE_WCHAR_T
-    &__timepunct<wchar_t>::id, 
-    &time_get<wchar_t>::id,
-    &time_put<wchar_t>::id,
-#endif
     0
   };
   
   const locale::id* const
   locale::_Impl::_S_id_monetary[] =
   {
-    &money_get<char>::id,        
-    &money_put<char>::id,        
-    &moneypunct<char, false>::id, 
-    &moneypunct<char, true >::id, 
-#ifdef _GLIBCXX_USE_WCHAR_T
-    &money_get<wchar_t>::id,
-    &money_put<wchar_t>::id,
-    &moneypunct<wchar_t, false>::id,
-    &moneypunct<wchar_t, true >::id,
-#endif
     0
   };
 
@@ -395,35 +285,11 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   const locale::id* const locale::_S_twinned_facets[] = {
     &::_ZNSt8numpunctIcE2idE,
     &numpunct<char>::id,
-    &::_ZNSt7collateIcE2idE,
-    &std::collate<char>::id,
-    &::_ZNSt8time_getIcSt19istreambuf_iteratorIcSt11char_traitsIcEEE2idE,
-    &time_get<char>::id,
-    &::_ZNSt9money_getIcSt19istreambuf_iteratorIcSt11char_traitsIcEEE2idE,
-    &money_get<char>::id,
-    &::_ZNSt9money_putIcSt19ostreambuf_iteratorIcSt11char_traitsIcEEE2idE,
-    &money_put<char>::id,
-    &::_ZNSt10moneypunctIcLb0EE2idE,
-    &moneypunct<char, false>::id,
-    &::_ZNSt10moneypunctIcLb1EE2idE,
-    &moneypunct<char, true >::id,
     &::_ZNSt8messagesIcE2idE,
     &std::messages<char>::id,
 # ifdef _GLIBCXX_USE_WCHAR_T
     &::_ZNSt8numpunctIwE2idE,
     &numpunct<wchar_t>::id,
-    &::_ZNSt7collateIwE2idE,
-    &std::collate<wchar_t>::id,
-    &::_ZNSt8time_getIwSt19istreambuf_iteratorIwSt11char_traitsIwEEE2idE,
-    &time_get<wchar_t>::id,
-    &::_ZNSt9money_getIwSt19istreambuf_iteratorIwSt11char_traitsIwEEE2idE,
-    &money_get<wchar_t>::id,
-    &::_ZNSt9money_putIwSt19ostreambuf_iteratorIwSt11char_traitsIwEEE2idE,
-    &money_put<wchar_t>::id,
-    &::_ZNSt10moneypunctIwLb0EE2idE,
-    &moneypunct<wchar_t, false>::id,
-    &::_ZNSt10moneypunctIwLb1EE2idE,
-    &moneypunct<wchar_t, true >::id,
     &::_ZNSt8messagesIwE2idE,
     &std::messages<wchar_t>::id,
 # endif
@@ -460,24 +326,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
     _M_init_facet(new (&num_get_c) num_get<char>(1));
     _M_init_facet(new (&num_put_c) num_put<char>(1));
-    _M_init_facet(new (&collate_c) std::collate<char>(1));
 
-    typedef __moneypunct_cache<char, false> money_cache_cf;
-    typedef __moneypunct_cache<char, true> money_cache_ct;
-    money_cache_cf* __mpcf = new (&moneypunct_cache_cf) money_cache_cf(2);
-    _M_init_facet(new (&moneypunct_cf) moneypunct<char, false>(__mpcf, 1));
-    money_cache_ct* __mpct = new (&moneypunct_cache_ct) money_cache_ct(2);
-    _M_init_facet(new (&moneypunct_ct) moneypunct<char, true>(__mpct, 1));
-
-    _M_init_facet(new (&money_get_c) money_get<char>(1));
-    _M_init_facet(new (&money_put_c) money_put<char>(1));
-
-    typedef __timepunct_cache<char> time_cache_c;
-    time_cache_c* __tpc = new (&timepunct_cache_c) time_cache_c(2);
-    _M_init_facet(new (&timepunct_c) __timepunct<char>(__tpc, 1));
-
-    _M_init_facet(new (&time_get_c) time_get<char>(1));
-    _M_init_facet(new (&time_put_c) time_put<char>(1));
     _M_init_facet(new (&messages_c) std::messages<char>(1));	
 
 #ifdef  _GLIBCXX_USE_WCHAR_T
@@ -489,31 +338,14 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
     _M_init_facet(new (&num_get_w) num_get<wchar_t>(1));
     _M_init_facet(new (&num_put_w) num_put<wchar_t>(1));
-    _M_init_facet(new (&collate_w) std::collate<wchar_t>(1));
 
-    typedef __moneypunct_cache<wchar_t, false> money_cache_wf;
-    typedef __moneypunct_cache<wchar_t, true> money_cache_wt;
-    money_cache_wf* __mpwf = new (&moneypunct_cache_wf) money_cache_wf(2);
-    _M_init_facet(new (&moneypunct_wf) moneypunct<wchar_t, false>(__mpwf, 1));
-    money_cache_wt* __mpwt = new (&moneypunct_cache_wt) money_cache_wt(2);
-    _M_init_facet(new (&moneypunct_wt) moneypunct<wchar_t, true>(__mpwt, 1));
-
-    _M_init_facet(new (&money_get_w) money_get<wchar_t>(1));
-    _M_init_facet(new (&money_put_w) money_put<wchar_t>(1));
-
-    typedef __timepunct_cache<wchar_t> time_cache_w;
-    time_cache_w* __tpw = new (&timepunct_cache_w) time_cache_w(2);
-    _M_init_facet(new (&timepunct_w) __timepunct<wchar_t>(__tpw, 1));
-
-    _M_init_facet(new (&time_get_w) time_get<wchar_t>(1));
-    _M_init_facet(new (&time_put_w) time_put<wchar_t>(1));
     _M_init_facet(new (&messages_w) std::messages<wchar_t>(1));
 #endif
 
 #if _GLIBCXX_USE_DUAL_ABI
-    facet* extra[] = { __npc, __mpcf, __mpct
+    facet* extra[] = { __npc
 # ifdef  _GLIBCXX_USE_WCHAR_T
-        , __npw, __mpwf, __mpwt
+        , __npw
 # endif
     };
 
@@ -523,14 +355,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     // This locale is safe to pre-cache, after all the facets have
     // been created and installed.
     _M_caches[numpunct<char>::id._M_id()] = __npc;
-    _M_caches[moneypunct<char, false>::id._M_id()] = __mpcf;
-    _M_caches[moneypunct<char, true>::id._M_id()] = __mpct;
-    _M_caches[__timepunct<char>::id._M_id()] = __tpc;
 #ifdef  _GLIBCXX_USE_WCHAR_T
     _M_caches[numpunct<wchar_t>::id._M_id()] = __npw;
-    _M_caches[moneypunct<wchar_t, false>::id._M_id()] = __mpwf;
-    _M_caches[moneypunct<wchar_t, true>::id._M_id()] = __mpwt;
-    _M_caches[__timepunct<wchar_t>::id._M_id()] = __tpw;
 #endif
   }
 

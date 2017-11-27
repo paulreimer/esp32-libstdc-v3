@@ -130,7 +130,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   // Used by both numeric and monetary facets.
   // Check to make sure that the __grouping_tmp string constructed in
-  // money_get or num_get matches the canonical grouping for a given
+  // num_get matches the canonical grouping for a given
   // locale.
   // __grouping_tmp is parsed L to R
   // 1,222,444 == __grouping_tmp of "\1\3\3"
